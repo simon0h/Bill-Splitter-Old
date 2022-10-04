@@ -14,7 +14,7 @@ const Item = (props) => {
 	}
 
 	const removeItemHandler = () => {
-		props.removeItem(props.id);
+		props.removeItem(props.id, props.price);
 	}
 
 	if (editItemOn) {

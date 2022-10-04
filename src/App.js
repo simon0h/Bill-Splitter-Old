@@ -1,24 +1,36 @@
 import React, { useState } from "react";
-import AllItems from "./AddItem/AllItems";
+import AddTaxTip from "./AddTaxTip/AddTaxTip"
 import AddItem from "./AddItem/AddItem";
-import AllPeople from "./AddPerson/AllPeople";
+import AllItems from "./AddItem/AllItems";
 import AddPerson from "./AddPerson/AddPerson";
+import AllPeople from "./AddPerson/AllPeople";
 import MatchPersonFood from "./MatchPersonFood/MatchPersonFood"
+import CalculateCosts from "./CalculateCosts/CalculateCosts"
 import './App.css';
 
 const App = () => {
 	const[screen, setScreen] = useState(0);
 
-	const[items, setItems] = useState("");
-	const[people, setPerson] = useState("");
+	const[inputTipAsPercent, setInputTipAsPercent] = useState(true);
+	const[inputTaxAsPercent, setInputTaxAsPercent] = useState(true);
+	const[taxTip, setTaxTip] = useState({tax: 0, tip: 0});
 
-	const [itemID, setItemID] = useState(1);
-	const [personID, setPersonID] = useState(1);
+	const[totalFoodCost, setTotalCost] = useState(0);
+
+	const[items, setItems] = useState(""); //[{name, price, id}]
+	const[people, setPerson] = useState(""); //[{name, id}]
+
+	const[itemID, setItemID] = useState(1);
+	const[personID, setPersonID] = useState(1);
+
+	const[itemEatenBy_All, setItemEatenBy_All] = useState("");
 
 	const addNewItem = (newItem) => {
+		setTotalCost(totalFoodCost + newItem.price);
 		setItems((prevItems) => {
 			return [newItem, ...prevItems];
 		});
+		setItemEatenBy_All(itemEatenBy_All => [...itemEatenBy_All, {itemID: newItem.id, peopleID: []}]);
 	}
 
 	const editItem = (id, newName, newPrice) => {
@@ -41,7 +53,8 @@ const App = () => {
 	    setItems(newList);
 	}
 
-	const removeItem = (id) => {
+	const removeItem = (id, price) => {
+		setTotalCost(totalFoodCost - price);
 		const newList = items.filter((item) => item.id !== id);
     	setItems(newList);
 	}
@@ -77,6 +90,18 @@ const App = () => {
     	setPerson(newList);
 	}
 
+	const matchItemEatenBy_All = (itemID, thisItemEatenBy) => {
+		const newItemEatenBy_All = itemEatenBy_All.map((obj) => {
+			if (obj.itemID === itemID) {
+				return {itemID: itemID, peopleID: thisItemEatenBy};
+			}
+			else {
+				return obj;
+			}
+		});
+		setItemEatenBy_All(newItemEatenBy_All);
+	}
+
 	const prevScreen = () => {
 		setScreen(screen - 1);
 	}
@@ -101,9 +126,19 @@ const App = () => {
 		return (
 	    	<div className="App">
 	    		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
-    			<MatchPersonFood items = {items} people = {people}/>
+    			<MatchPersonFood items = {items} people = {people} itemEatenBy_All = {itemEatenBy_All} matchItemEatenBy_All = {matchItemEatenBy_All}/>
 	    		<button type = "submit" onClick = {prevScreen}>Back</button>
 	    		<button type = "submit" onClick = {nextScreen}>Next</button>
+	    	</div>
+	  	);
+	}
+
+	else if (screen === 3) {
+		return (
+	    	<div className="App">
+	    		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
+    			<CalculateCosts items = {items} people = {people} itemEatenBy_All = {itemEatenBy_All} taxTip = {taxTip} inputTaxAsPercent = {inputTaxAsPercent} inputTipAsPercent = {inputTipAsPercent} totalFoodCost = {totalFoodCost}/>
+	    		<button type = "submit" onClick = {prevScreen}>Back</button>
 	    	</div>
 	  	);
 	}
@@ -111,7 +146,8 @@ const App = () => {
 	return (
     	<div className="App">
     		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
-    		<AddItem onAddItem = {addNewItem} itemID = {itemID} setItemID = {setItemID}/>
+    		<AddTaxTip taxTip = {taxTip} inputTaxAsPercent = {inputTaxAsPercent} inputTipAsPercent = {inputTipAsPercent} setInputTaxAsPercent = {setInputTaxAsPercent} setInputTipAsPercent = {setInputTipAsPercent} setTaxTip = {setTaxTip}/>
+    		<AddItem onAddItem = {addNewItem} itemID = {itemID} setItemID = {setItemID}/> {/*Suggest new items based on what was entered, e.g suggest ramen if that was already types*/}
     		<AllItems items = {items} editItem = {editItem} removeItem = {removeItem}/>
     		<button type = "submit" onClick = {nextScreen}>Next</button>
     	</div>

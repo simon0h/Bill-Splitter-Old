@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Item from "./IndvItem";
 
 const allItems = (props) => {
@@ -7,8 +7,8 @@ const allItems = (props) => {
 		props.editItem(id, newName, newPrice);
 	}
 
-	const removeItem = (id) => {
-    	props.removeItem(id);
+	const removeItem = (id, price) => {
+    	props.removeItem(id, price);
 	}
  
  	return (

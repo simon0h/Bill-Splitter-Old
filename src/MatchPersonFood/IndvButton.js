@@ -6,13 +6,15 @@ const IndvButton = (props) => {
 	const[selectionState, setSelectionState] = useState("false");
 
 	const onPersonSelection = (event) => {
+		setSelectionState(!selectionState);
 		if (selectionState) {
 			setButtonColor("selected");
+			props.addPersonWhoAte(props.id);
 		}
 		else {
 			setButtonColor("notSelected");
+			props.removePersonWhoAte(props.id);
 		}
-		setSelectionState(!selectionState);
 	}
 
 	return (

@@ -48,7 +48,7 @@ const EditItem = (props) => {
 		      			<input
 		      				type = "number"
 		      				min = "0.01"
-		      				step="0.01" 
+		      				step = "0.01" 
 		      				value = {newPrice}
 		      				onChange = {itemPriceChangeHandler}
 		      			/>

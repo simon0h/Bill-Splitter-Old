@@ -6,7 +6,6 @@ const Person = (props) => {
 
 	const editPerson = (id, newName) => {
 		props.editPerson(id, newName);
-		console.log(newName);
 	}
 
 	const editPersonHandler = () => {

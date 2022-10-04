@@ -42,7 +42,7 @@ const AddItem = (props) => {
       		<div>Add a new item</div>
       		<form onSubmit = {submitHandler}>
       			<div className = "AddItemInputField">
-	      			<label>Item Name</label>
+	      			<label>Item Name: </label>
 	      			<input
 	      				type = "text"
 	      				value = {itemName}
@@ -51,11 +51,11 @@ const AddItem = (props) => {
 	      			/>
 	      		</div>
 	      		<div className = "AddItemInputField">
-	      			<label>Item Price</label>
+	      			<label>Item Price: $</label>
 	      			<input
 	      				type = "number"
 	      				min = "0.01"
-	      				step="0.01" 
+	      				step = "0.01" 
 	      				value = {itemPrice}
 	      				onChange = {itemPriceChangeHandler}
 	      			/>
