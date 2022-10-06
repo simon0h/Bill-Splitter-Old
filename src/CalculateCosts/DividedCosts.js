@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 const DividedCosts = (props) => {
 
+	const [thisPersonOwesArray, setThisPersonOwesArray] = useState();
+
 	const fillPeople = () => {
 		// const invoice = props.people.map((obj) => {
 		// 	return {personID: obj.id, name: obj.name, owes: 0};
@@ -24,22 +26,26 @@ const DividedCosts = (props) => {
 				invoice[people[j]][1] += indvPrice;
 			}
 		}
+		var invoiceArray = [];
+		for (var i in invoice) {
+			invoiceArray.push({"id": invoice[i], "name": invoice[i][0], "owes": invoice[i][1]});
+		}
+		setThisPersonOwesArray(invoiceArray);
 		return(invoice);
 	}
 
 	const[thisPersonOwes, setThisPersonOwes] = useState(() => {
 		const initialState = fillPeople();
-		console.log(initialState);
 		return initialState;
 	});
 
 	return (
 		<div className = "App">
-			{/*{thisPersonOwes && thisPersonOwes.map((person) => (
-				<li key = {person.personID}>
-					<div>{person.name} owes: ${person.owes}</div>
+			{thisPersonOwesArray && thisPersonOwesArray.map((person) => (
+				<li key = {person.id}>
+	  				<div>{person.name} owes ${person.owes}</div>
   				</li>)
-	      	)}*/}
+	      	)}
 		</div>
 	);
 }

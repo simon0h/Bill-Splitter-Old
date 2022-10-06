@@ -17,8 +17,8 @@ const App = () => {
 
 	const[totalFoodCost, setTotalCost] = useState(0);
 
-	const[items, setItems] = useState(""); //[{name, price, id}]
-	const[people, setPerson] = useState(""); //[{name, id}]
+	const[items, setItems] = useState(""); // Change to a dict
+	const[people, setPerson] = useState(""); // Change to a dict
 
 	const[itemID, setItemID] = useState(1);
 	const[personID, setPersonID] = useState(1);

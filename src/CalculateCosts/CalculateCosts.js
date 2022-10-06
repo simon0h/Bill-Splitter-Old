@@ -7,7 +7,6 @@ const CalculateCosts = (props) => {
 		let tax = 0;
 		if (props.inputTaxAsPercent) {
 			tax = (Math.floor((props.totalFoodCost * (props.taxTip.tax / 100)) * 100) / 100);
-			tax += " (" + props.taxTip.tax + "%)";
 		}
 		else {
 			tax = props.taxTip.tax;
@@ -19,7 +18,6 @@ const CalculateCosts = (props) => {
 		let tip = 0;
 		if (props.inputTipAsPercent) {
 			tip = (Math.floor((props.totalFoodCost * (props.taxTip.tip / 100)) * 100) / 100);
-			tip += " (" + props.taxTip.tip + "%)";
 		}
 		else {
 			tip = props.taxTip.tip;
@@ -27,10 +25,21 @@ const CalculateCosts = (props) => {
 		return tip;
 	}
 
+	const showPercentage = (type) => {
+		let percentage = "";
+		if (type === "tax") {
+			percentage = " (" + props.taxTip.tax + "%)";
+		}
+		else {
+			percentage = " (" + props.taxTip.tip + "%)";
+		}
+		return percentage;
+	}
+
 	return (
 		<div className = "App">
-			<div>Tax: ${calculateTax()}</div>
-			<div>Tip: ${calculateTip()}</div>
+			<div>Tax: ${calculateTax()} {showPercentage("tax")}</div>
+			<div>Tip: ${calculateTip()} {showPercentage("tip")}</div>
 			<div>Cost of food: ${props.totalFoodCost}</div>
 			<div>Subtotal: ${calculateTax() + calculateTip() + props.totalFoodCost}</div>
 			<DividedCosts itemEatenBy_All = {props.itemEatenBy_All} items = {props.items} people = {props.people}/>
