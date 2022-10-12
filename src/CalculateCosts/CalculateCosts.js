@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DividedCosts from "./DividedCosts";
 
 const CalculateCosts = (props) => {

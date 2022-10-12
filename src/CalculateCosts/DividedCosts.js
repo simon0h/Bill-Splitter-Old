@@ -2,12 +2,7 @@ import React, { useState } from "react";
 
 const DividedCosts = (props) => {
 
-	const [thisPersonOwesArray, setThisPersonOwesArray] = useState();
-
 	const fillPeople = () => {
-		// const invoice = props.people.map((obj) => {
-		// 	return {personID: obj.id, name: obj.name, owes: 0};
-		// });
 		var invoice = {}
 		for (var k in props.people) {
 			invoice[props.people[k]["id"]] = [props.people[k]["name"], 0];
@@ -22,16 +17,15 @@ const DividedCosts = (props) => {
 					indvPrice = props.items[j]["price"] / numPeople;
 				}
 			}
-			for (var j in people) {
-				invoice[people[j]][1] += indvPrice;
+			for (var ii in people) {
+				invoice[people[ii]][1] += indvPrice;
 			}
 		}
 		var invoiceArray = [];
 		for (var i in invoice) {
 			invoiceArray.push({"id": invoice[i], "name": invoice[i][0], "owes": invoice[i][1]});
 		}
-		setThisPersonOwesArray(invoiceArray);
-		return(invoice);
+		return invoiceArray;
 	}
 
 	const[thisPersonOwes, setThisPersonOwes] = useState(() => {
@@ -41,7 +35,7 @@ const DividedCosts = (props) => {
 
 	return (
 		<div className = "App">
-			{thisPersonOwesArray && thisPersonOwesArray.map((person) => (
+			{thisPersonOwes && thisPersonOwes.map((person) => (
 				<li key = {person.id}>
 	  				<div>{person.name} owes ${person.owes}</div>
   				</li>)

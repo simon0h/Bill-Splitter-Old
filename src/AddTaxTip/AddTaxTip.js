@@ -62,16 +62,16 @@ const AddTaxTip = (props) => {
 
 	const changeTaxInputButton = () => {
 		if (taxButtonColor_Percent) {
-			return ("Change to amount");
+			return ("Enter by amount instead");
 		}
-		return ("Change to percentage");
+		return ("Enter by percentage instead");
 	}
 
 	const changeTipInputButton = () => {
 		if (tipButtonColor_Percent) {
-			return ("Change to amount");
+			return ("Enter by amount instead");
 		}
-		return ("Change to percentage");
+		return ("Enter by percentage instead");
 	}
 
 	const submitHandler = (event) => {

@@ -9,7 +9,7 @@ const MatchPersonFood = (props) => {
 				<li key = {item.id}>
 	  				<div>{item.name}</div>
 	  				<div>{item.price}</div>
-	  				<ChooseWhoAte itemID = {item.id} people = {props.people} matchItemEatenBy_All = {props.matchItemEatenBy_All}/>
+	  				<ChooseWhoAte itemID = {item.id} people = {props.people} matchItemEatenBy_All = {props.matchItemEatenBy_All} itemEatenBy_All = {props.itemEatenBy_All}/>
   				</li>)
 	      	)}
 	    </ul>
