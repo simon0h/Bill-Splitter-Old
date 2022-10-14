@@ -12,18 +12,31 @@ const DividedCosts = (props) => {
 			let people = props.itemEatenBy_All[i]["peopleID"];
 			let numPeople = people.length;
 			let indvPrice = 0;
-			for (var j in props.items) {
-				if (props.items[j]["id"] === itemID) {
-					indvPrice = props.items[j]["price"] / numPeople;
+			for (var ii in props.items) {
+				if (props.items[ii]["id"] === itemID) {
+					indvPrice = props.items[ii]["price"] / numPeople;
 				}
 			}
-			for (var ii in people) {
-				invoice[people[ii]][1] += indvPrice;
+			for (var iii in people) {
+				invoice[people[iii]][1] += indvPrice;
 			}
 		}
 		var invoiceArray = [];
-		for (var i in invoice) {
-			invoiceArray.push({"id": invoice[i], "name": invoice[i][0], "owes": invoice[i][1]});
+		for (var j in invoice) {
+			var owes = invoice[j][1];
+			if (props.splitTaxEvenly) {
+				owes += (props.totalTax / props.people.length);
+			}
+			else {
+				owes += (props.totalTax * (invoice[j][1] / props.totalFoodCost));
+			}
+			if (props.splitTipEvenly) {
+				owes += (props.totalTip / props.people.length);
+			}
+			else {
+				owes += (props.totalTip * (invoice[j][1] / props.totalFoodCost));
+			}
+			invoiceArray.push({"id": invoice[j], "name": invoice[j][0], "owes": owes.toFixed(2)});
 		}
 		return invoiceArray;
 	}
@@ -45,3 +58,25 @@ const DividedCosts = (props) => {
 }
 
 export default DividedCosts
+
+// const Parent = (props) => {
+// 	const onSplitTaxMethod = () => {
+// 		if (props.splitTaxEvenly) {
+// 			setSplitTaxButton("Split tax evenly");	
+// 		}
+// 		else {
+// 			setSplitTaxButton("Don't split tax evenly");
+// 		}
+// 		props.setSplitTaxEvenly(!props.splitTaxEvenly);
+// 	}
+
+// 	return (
+// 		<div className = "App">
+// 			<div>Tax: ${totalTax} {showPercentage("tax")} <button onClick = {onSplitTaxMethod}>{splitTaxButton}</button> </div>
+// 			<Child 
+// 				totalTax = {totalTax}
+// 				totalTip = {totalTip}
+// 			/>
+// 		</div>
+// 	);
+// }

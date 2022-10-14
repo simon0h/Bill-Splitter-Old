@@ -25,6 +25,9 @@ const App = () => {
 
 	const[itemEatenBy_All, setItemEatenBy_All] = useState("");
 
+	const[splitTipEvenly, setSplitTipEvenly] = useState(true);
+	const[splitTaxEvenly, setSplitTaxEvenly] = useState(true);
+
 	const addNewItem = (newItem) => {
 		setTotalCost(totalFoodCost + newItem.price);
 		setItems((prevItems) => {
@@ -137,7 +140,19 @@ const App = () => {
 		return (
 	    	<div className="App">
 	    		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
-    			<CalculateCosts items = {items} people = {people} itemEatenBy_All = {itemEatenBy_All} taxTip = {taxTip} inputTaxAsPercent = {inputTaxAsPercent} inputTipAsPercent = {inputTipAsPercent} totalFoodCost = {totalFoodCost}/>
+    			<CalculateCosts 
+    				items = {items} 
+					people = {people} 
+					itemEatenBy_All = {itemEatenBy_All} 
+					taxTip = {taxTip} 
+					inputTaxAsPercent = {inputTaxAsPercent} 
+					inputTipAsPercent = {inputTipAsPercent} 
+					totalFoodCost = {totalFoodCost}
+					splitTaxEvenly = {splitTaxEvenly}
+					splitTipEvenly = {splitTipEvenly}
+					setSplitTaxEvenly = {setSplitTaxEvenly}
+					setSplitTipEvenly = {setSplitTipEvenly}
+    			/>
 	    		<button type = "submit" onClick = {prevScreen}>Back</button>
 	    	</div>
 	  	);
