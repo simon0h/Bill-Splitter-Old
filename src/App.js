@@ -20,6 +20,9 @@ const App = () => {
 	const[items, setItems] = useState(""); // Change to a dict
 	const[people, setPerson] = useState(""); // Change to a dict
 
+	const[numItems, setNumItems] = useState(0);
+	const[numPeople, setNumPeople] = useState(0);
+
 	const[itemID, setItemID] = useState(1);
 	const[personID, setPersonID] = useState(1);
 
@@ -30,10 +33,17 @@ const App = () => {
 
 	const addNewItem = (newItem) => {
 		setTotalCost(totalFoodCost + newItem.price);
-		setItems((prevItems) => {
-			return [newItem, ...prevItems];
-		});
-		setItemEatenBy_All(itemEatenBy_All => [...itemEatenBy_All, {itemID: newItem.id, peopleID: []}]);
+		setNumItems(numItems + 1);
+		if (numItems > 20) {
+			setNumItems(20);
+			window.alert("Number of people cannot exceed 20");
+		}
+		else {
+			setItems((prevItems) => {
+				return [newItem, ...prevItems];
+			});
+			setItemEatenBy_All(itemEatenBy_All => [...itemEatenBy_All, {itemID: newItem.id, peopleID: []}]);
+		}
 	}
 
 	const editItem = (id, newName, newPrice) => {
@@ -50,7 +60,6 @@ const App = () => {
 	        };
 	        return updatedItem;
 	      }
-
 	      return item;
 	    });
 	    setItems(newList);
@@ -58,14 +67,22 @@ const App = () => {
 
 	const removeItem = (id, price) => {
 		setTotalCost(totalFoodCost - price);
+		setNumItems(numItems - 1);
 		const newList = items.filter((item) => item.id !== id);
     	setItems(newList);
 	}
 
 	const addNewPerson = (newPerson) => {
-		setPerson((prevPeople) => {
-			return [newPerson, ...prevPeople];
-		});
+		setNumPeople(numPeople + 1);
+		if (numPeople > 50) {
+			setNumPeople(50);
+			window.alert("Number of items cannot exceed 50");
+		}
+		else {
+			setPerson((prevPeople) => {
+				return [newPerson, ...prevPeople];
+			});
+		}
 	}
 
 	const editPerson = (id, newName) => {
@@ -89,6 +106,7 @@ const App = () => {
 	}
 
 	const removePerson = (id) => {
+		setNumPeople(numPeople - 1);
 		const newList = people.filter((person) => person.id !== id);
     	setPerson(newList);
 	}

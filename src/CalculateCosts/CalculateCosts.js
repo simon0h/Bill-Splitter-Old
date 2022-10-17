@@ -7,16 +7,16 @@ const CalculateCosts = (props) => {
 
 	const[splitTaxButton, setSplitTaxButton] = useState(() => {
 		if (props.splitTaxEvenly) {
-			return ("Don't split tax evenly");
+			return("Don't split tax evenly");
 		}
-		return ("Split tax evenly")
+		return("Split tax evenly");
 	});
 
 	const[splitTipButton, setSplitTipButton] = useState(() => {
 		if (props.splitTipEvenly) {
-			return ("Don't split tip evenly");
+			return("Don't split tip evenly");
 		}
-		return ("Split tip evenly")
+		return ("Split tip evenly");
 	});
 
 	const[totalTax, setTotalTax] = useState(() => {
@@ -27,7 +27,7 @@ const CalculateCosts = (props) => {
 		else {
 			tax = props.taxTip.tax;
 		}
-		return tax;
+		return(tax);
 	});
 
 	const[totalTip, setTotalTip] = useState(() => {
@@ -38,7 +38,7 @@ const CalculateCosts = (props) => {
 		else {
 			tip = props.taxTip.tip;
 		}
-		return tip;
+		return(tip);
 	})
 
 	const showPercentage = (type) => {
@@ -49,7 +49,7 @@ const CalculateCosts = (props) => {
 		else {
 			percentage = " (" + props.taxTip.tip + "% of the total price)";
 		}
-		return percentage;
+		return(percentage);
 	}
 
 	const onSplitTaxMethod = () => {
