@@ -5,40 +5,40 @@ const DividedCosts = (props) => {
 	const[showMoreDetail, setShowMoreDetail] = useState(false);
 
 	const fillPeople = () => {
-		var invoice = {}
-		for (var k in props.people) {
-			invoice[props.people[k]["id"]] = [props.people[k]["name"], 0];
+		let invoice = {}
+		for (let i in props.people) {
+			invoice[props.people[i]["id"]] = [props.people[i]["name"], 0];
 		}
-		for (var i in props.itemEatenBy_All) {
+		for (let i in props.itemEatenBy_All) {
 			let itemID = props.itemEatenBy_All[i]["itemID"];
 			let peopleArr = props.itemEatenBy_All[i]["peopleID"];
 			let numPeople = peopleArr.length;
 			let indvPrice = 0;
-			for (var ii in props.items) {
+			for (let ii in props.items) {
 				if (props.items[ii]["id"] === itemID) {
 					indvPrice = props.items[ii]["price"] / numPeople;
 				}
 			}
-			for (var iii in peopleArr) {
-				invoice[peopleArr[iii]][1] += indvPrice;
+			for (let ii in peopleArr) {
+				invoice[peopleArr[ii]][1] += indvPrice;
 			}
 		}
-		var invoiceArray = [];
-		for (var j in invoice) {
-			var owes = invoice[j][1];
+		let invoiceArray = [];
+		for (let i in invoice) {
+			let owes = invoice[i][1];
 			if (props.splitTaxEvenly) {
 				owes += (props.totalTax / props.people.length);
 			}
 			else {
-				owes += (props.totalTax * (invoice[j][1] / props.totalFoodCost));
+				owes += (props.totalTax * (invoice[i][1] / props.totalFoodCost));
 			}
 			if (props.splitTipEvenly) {
 				owes += (props.totalTip / props.people.length);
 			}
 			else {
-				owes += (props.totalTip * (invoice[j][1] / props.totalFoodCost));
+				owes += (props.totalTip * (invoice[i][1] / props.totalFoodCost));
 			}
-			invoiceArray.push({"id": invoice[j], "name": invoice[j][0], "owes": owes.toFixed(2)});
+			invoiceArray.push({"id": invoice[i], "name": invoice[i][0], "owes": owes.toFixed(2)});
 		}
 		return invoiceArray;
 	}
@@ -51,22 +51,22 @@ const DividedCosts = (props) => {
 	const getDetail = () => {
 		let invoice = {};
 		let itemObj = {};
-		for (var i in props.people) {
+		for (let i in props.people) {
 			invoice[props.people[i]["id"]] = [props.people[i]["name"]];
 		}
-		for (var k in props.items) {
-			itemObj[props.items[k]["id"]] = props.items[k]["name"];
+		for (let i in props.items) {
+			itemObj[props.items[i]["id"]] = props.items[i]["name"];
 		}
-		for (var j in props.itemEatenBy_All) {
-			let itemID = props.itemEatenBy_All[j]["itemID"];
-			let peopleArr = props.itemEatenBy_All[j]["peopleID"];
-			for (var ii in peopleArr) {
+		for (let i in props.itemEatenBy_All) {
+			let itemID = props.itemEatenBy_All[i]["itemID"];
+			let peopleArr = props.itemEatenBy_All[i]["peopleID"];
+			for (let ii in peopleArr) {
 				invoice[peopleArr[ii]].push(itemObj[itemID]);
 			}
 		}
-		var invoiceArray = [];
-		for (var l in invoice) {
-			invoiceArray.push({"id": l, "name": invoice[l][0], "items": invoice[l].slice(1, invoice[l].length)});
+		let invoiceArray = [];
+		for (let i in invoice) {
+			invoiceArray.push({"id": i, "name": invoice[i][0], "items": invoice[i].slice(1, invoice[i].length)});
 		}
 		return (invoiceArray);
 	}

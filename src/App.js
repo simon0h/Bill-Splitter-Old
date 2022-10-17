@@ -131,12 +131,47 @@ const App = () => {
 		setScreen(screen + 1);
 	}
 
-	if (screen === 1) {
+	if (screen === 0) {
 		return (
 	    	<div className="App">
 	    		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
-    			<AddPerson onAddPerson = {addNewPerson} personID = {personID} setPersonID = {setPersonID}/>
-    			<AllPeople people = {people} editPerson = {editPerson} removePerson = {removePerson}/>
+	    		<AddTaxTip 
+	    			taxTip = {taxTip} 
+	    			inputTaxAsPercent = {inputTaxAsPercent} 
+	    			inputTipAsPercent = {inputTipAsPercent} 
+	    			setInputTaxAsPercent = {setInputTaxAsPercent} 
+	    			setInputTipAsPercent = {setInputTipAsPercent} 
+	    			setTaxTip = {setTaxTip}
+	    		/>
+	    		<AddItem 
+	    			onAddItem = {addNewItem} 
+	    			itemID = {itemID} 
+	    			setItemID = {setItemID}
+	    		/> {/*Suggest new items based on what was entered, e.g suggest ramen if that was already types*/}
+	    		<AllItems 
+	    			items = {items} 
+	    			editItem = {editItem} 
+	    			removeItem = {removeItem}
+	    		/>
+	    		<button type = "submit" onClick = {nextScreen}>Next</button>
+	    	</div>
+	  	);
+	}
+
+	else if (screen === 1) {
+		return (
+	    	<div className="App">
+	    		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
+    			<AddPerson 
+    				onAddPerson = {addNewPerson} 
+    				personID = {personID} 
+    				setPersonID = {setPersonID}
+    			/>
+    			<AllPeople 
+    				people = {people} 
+    				editPerson = {editPerson} 
+    				removePerson = {removePerson}
+    			/>
 	    		<button type = "submit" onClick = {prevScreen}>Back</button>
 	    		<button type = "submit" onClick = {nextScreen}>Next</button>
 	    	</div>
@@ -147,14 +182,19 @@ const App = () => {
 		return (
 	    	<div className="App">
 	    		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
-    			<MatchPersonFood items = {items} people = {people} itemEatenBy_All = {itemEatenBy_All} matchItemEatenBy_All = {matchItemEatenBy_All}/>
+    			<MatchPersonFood 
+    				items = {items} 
+    				people = {people} 
+    				itemEatenBy_All = {itemEatenBy_All} 
+    				matchItemEatenBy_All = {matchItemEatenBy_All}
+    			/>
 	    		<button type = "submit" onClick = {prevScreen}>Back</button>
 	    		<button type = "submit" onClick = {nextScreen}>Next</button>
 	    	</div>
 	  	);
 	}
 
-	else if (screen === 3) {
+	else {
 		return (
 	    	<div className="App">
 	    		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
@@ -175,16 +215,6 @@ const App = () => {
 	    	</div>
 	  	);
 	}
-
-	return (
-    	<div className="App">
-    		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
-    		<AddTaxTip taxTip = {taxTip} inputTaxAsPercent = {inputTaxAsPercent} inputTipAsPercent = {inputTipAsPercent} setInputTaxAsPercent = {setInputTaxAsPercent} setInputTipAsPercent = {setInputTipAsPercent} setTaxTip = {setTaxTip}/>
-    		<AddItem onAddItem = {addNewItem} itemID = {itemID} setItemID = {setItemID}/> {/*Suggest new items based on what was entered, e.g suggest ramen if that was already types*/}
-    		<AllItems items = {items} editItem = {editItem} removeItem = {removeItem}/>
-    		<button type = "submit" onClick = {nextScreen}>Next</button>
-    	</div>
-  	);
 }
 
 export default App;
