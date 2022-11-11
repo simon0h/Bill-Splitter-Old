@@ -1,0 +1,61 @@
+.indvItem {
+	background-color: rgb(241, 241, 241);
+	border-radius: 6px;
+	width: fit-content;
+	text-align: center;
+	margin: auto;
+	margin-top: 23px;
+	font-size: 1.3em;
+}
+
+.name {
+	/* background-color: rgb(233, 179, 116); */
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	/* width: auto;
+	display: block; */
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	padding-top: 2em;
+	padding-bottom: 0.8em;
+	height: fit-content;
+	font-weight: bold;
+}
+
+.price {
+	padding-bottom: 1.1em;
+}
+
+.edit button {
+	background-color: rgb(241, 241, 241);
+	color: blue;
+	display: inline-block;
+	border: none;
+	font-size: 0.9em;
+	padding-top: 0.2em;
+	padding-bottom: 3px;
+	padding-left: 3px;
+	padding-right: 0.2em;
+	float: right;
+}
+
+.cancel button {
+	background-color: orange;
+}
+
+.save button {
+	background-color: green;
+}
+
+.remove button {
+	background-color: rgb(241, 241, 241);
+	color: rgb(250, 60, 60);
+	display: inline-block;
+	border: none;
+	font-size: 0.9em;
+	padding-top: 0.2em;
+	padding-bottom: 3px;
+	padding-left: 3px;
+	padding-right: 0.2em;
+	float: left;
+}

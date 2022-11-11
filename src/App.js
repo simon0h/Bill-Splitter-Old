@@ -7,6 +7,7 @@ import AllPeople from "./AddPerson/AllPeople";
 import MatchPersonFood from "./MatchPersonFood/MatchPersonFood"
 import CalculateCosts from "./CalculateCosts/CalculateCosts"
 import './App.css';
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const App = () => {
 	const[screen, setScreen] = useState(0);
@@ -153,7 +154,9 @@ const App = () => {
 	    			editItem = {editItem} 
 	    			removeItem = {removeItem}
 	    		/>
-	    		<button type = "submit" onClick = {nextScreen}>Next</button>
+				<div className = "next">
+	    			<button type = "submit" onClick = {nextScreen}><FaArrowRight/></button>
+				</div>
 	    	</div>
 	  	);
 	}
@@ -172,8 +175,12 @@ const App = () => {
     				editPerson = {editPerson} 
     				removePerson = {removePerson}
     			/>
-	    		<button type = "submit" onClick = {prevScreen}>Back</button>
-	    		<button type = "submit" onClick = {nextScreen}>Next</button>
+				<div className = "back">
+	    			<button type = "submit" onClick = {prevScreen}><FaArrowLeft/></button>
+				</div>
+				<div className = "next">
+	    			<button type = "submit" onClick = {nextScreen}><FaArrowRight/></button>
+				</div>
 	    	</div>
 	  	);
 	}
@@ -188,8 +195,12 @@ const App = () => {
     				itemEatenBy_All = {itemEatenBy_All} 
     				matchItemEatenBy_All = {matchItemEatenBy_All}
     			/>
-	    		<button type = "submit" onClick = {prevScreen}>Back</button>
-	    		<button type = "submit" onClick = {nextScreen}>Next</button>
+				<div className = "back">
+	    			<button type = "submit" onClick = {prevScreen}><FaArrowLeft/></button>
+				</div>
+				<div className = "next">
+	    			<button type = "submit" onClick = {nextScreen}><FaArrowRight/></button>
+				</div>
 	    	</div>
 	  	);
 	}
@@ -211,8 +222,10 @@ const App = () => {
 					setSplitTaxEvenly = {setSplitTaxEvenly}
 					setSplitTipEvenly = {setSplitTipEvenly}
     			/>
-	    		<button type = "submit" onClick = {prevScreen}>Back</button>
-	    	</div>
+				<div className = "back">
+	    			<button type = "submit" onClick = {prevScreen}><FaArrowLeft/></button>
+	    		</div>
+			</div>
 	  	);
 	}
 }

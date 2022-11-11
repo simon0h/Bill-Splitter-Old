@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../Style.css";
 
 const EditPerson = (props) => {
 	const [newName, setNewName] = useState(props.name);

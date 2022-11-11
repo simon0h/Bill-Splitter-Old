@@ -1,6 +1,8 @@
 import React from "react";
 import Item from "./IndvItem";
 
+import './allItems.css';
+
 const allItems = (props) => {
 
 	const editItem = (id, newName, newPrice) => {
@@ -12,7 +14,7 @@ const allItems = (props) => {
 	}
  
  	return (
-    	<ul className = "AllItems">
+    	<ul className = "allItems">
 	    	{props.items && props.items.map((item) =>
 	      		(<Item
 	      			key = {item.id}

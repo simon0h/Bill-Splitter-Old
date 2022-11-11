@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import EditItem from "./EditItem";
+import { FaTrash, FaPen } from "react-icons/fa";
+
+import "./indvItem.css"
 
 const Item = (props) => {
 	const [editItemOn, setEditItemOn] = useState(false);
@@ -32,14 +35,16 @@ const Item = (props) => {
 
  	return (
     	<li>
-    		<div className = "Item">
-    			<div>{props.name}</div>
-    			<div>{props.price}</div>
-    		</div>
-    		<button onClick = {editItemHandler}>Edit Item</button>
-    		<div className = "removeSomethingButton">
-    			<button onClick = {removeItemHandler}>Remove Item</button>
-    		</div>
+			<div className = "indvItem">
+				<div className = "remove">
+					<button onClick = {removeItemHandler}><FaTrash/></button>
+				</div>
+				<div className = "edit">
+					<button onClick = {editItemHandler}><FaPen/></button>
+				</div>
+				<div className = "name">{props.name}</div>
+				<div className = "price">{"$" + props.price}</div>
+			</div>
     	</li>
   	);
 }

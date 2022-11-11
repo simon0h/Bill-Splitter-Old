@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import '../App.css';
+import { FaPlusCircle } from "react-icons/fa";
+
+import './addItem.css';
 
 const AddItem = (props) => {
 	const [itemName, setItemName] = useState('');
@@ -37,35 +39,34 @@ const AddItem = (props) => {
 		setItemName("");
 	}
 
- 	return (
-    	<div className = "AddItem">
-      		<div>Add a new item</div>
-      		<form onSubmit = {submitHandler}>
-      			<div className = "AddItemInputField">
-	      			<label>Item Name: </label>
-	      			<input
-	      				type = "text"
-	      				value = {itemName}
-	      				onChange = {itemNameChangeHandler}
-	      				placeholder = {"Item"+props.itemID}
-	      			/>
-	      		</div>
-	      		<div className = "AddItemInputField">
-	      			<label>Item Price: $</label>
-	      			<input
-	      				type = "number"
-	      				min = "0.01"
-	      				step = "0.01" 
-	      				value = {itemPrice}
-	      				onChange = {itemPriceChangeHandler}
-	      			/>
-	      		</div>
-	      		<div>
-	      			<button type = "submit">Add Item</button>
-	      		</div>
-      		</form>
+    return (
+    	<div className = "addItem">
+			<div className = "addItemTitle">Add a new item</div>
+			<form onSubmit = {submitHandler}>
+				<div className = "addItemInputField">
+					<label>Name: </label>
+					<input
+						type = "text"
+						value = {itemName}
+						onChange = {itemNameChangeHandler}
+						placeholder = {" Item" + props.itemID}
+					/>
+				</div>
+				<div className = "addItemInputField">
+					<label>Price: </label>
+					<input
+						type = "number"
+						onChange = {itemPriceChangeHandler}
+						placeholder = {" $" + itemPrice}
+						inputmode = "decimal"
+					/>
+				</div>
+				<div className = "addItemButton">
+					<button type = "submit"><FaPlusCircle/></button>
+				</div>
+			</form>
     	</div>
-  	);
+	);
 }
 
 export default AddItem;

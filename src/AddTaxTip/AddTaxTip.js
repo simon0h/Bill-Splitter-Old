@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import './buttonColor.css';
+import './addTaxTip.css';
+import { FaSave } from "react-icons/fa";
 
 const AddTaxTip = (props) => {
 	const[tax, setTax] = useState(props.taxTip.tax);
@@ -29,17 +30,17 @@ const AddTaxTip = (props) => {
 	}
 
 	const taxLabel = () => {
-		if (taxButtonColor_Percent) {
-			return (["%", ""]);
+		if (!taxButtonColor_Percent) {
+			return (["$", ""]);
 		}
-		return (["", "$"]);
+		return (["", "%"]);
 	}
 
 	const tipLabel = () => {
-		if (tipButtonColor_Percent) {
-			return (["%", ""]);
+		if (!tipButtonColor_Percent) {
+			return (["$", ""]);
 		}
-		return (["", "$"]);
+		return (["", "%"]);
 	}
 
 	const changeTaxInputType = () => {
@@ -81,44 +82,51 @@ const AddTaxTip = (props) => {
 		props.setInputTipAsPercent(tipButtonColor_Percent);
 	}
 
- 	return (
-    	<div className = "AddTaxTip">
-      		<div>Add a new item</div>
-      		<form onSubmit = {submitHandler}>
-	      		<div className = "AddItemInputField">
-	      			<label>Tax: {taxLabel()[1]}</label>
-	      			<input
-	      				type = "number"
-	      				min = "0"
-	      				step = "0.01" 
-	      				value = {tax}
-	      				onChange = {taxChangeHandler}
-	      			/>
-	      			{taxLabel()[0]}
-	      			<div>
-						<button onClick = {changeTaxInputType}>{changeTaxInputButton()}</button>
+    return (
+		<div className = "addTaxTip">
+			<form onSubmit = {submitHandler}>
+				<div className = "addTaxTipInputField">
+					<label>Tax: </label>
+					<input
+						type = "number"	
+						onChange = {taxChangeHandler}
+						placeholder = {" " + taxLabel()[0] + tax + taxLabel()[1]}
+						inputmode = "decimal"
+					/>
+					<div className = "textAndToggle">
+					{/*<button onClick = {changeTaxInputType}>{changeTaxInputButton()}</button>*/}
+					<div className = "toggleLable">Enter by amount </div>
+						<label className = "switch">
+							<input type = "checkbox" onClick = {changeTaxInputType}></input>
+							<span className = "slider round"></span>
+						</label>
 					</div>
-	    		</div>
-	    		<div className = "AddItemInputField">
-	      			<label>Tip: {tipLabel()[1]}</label>
-	      			<input
-	      				type = "number"
-	      				min = "0"
-	      				step = "0.01" 
-	      				value = {tip}
-	      				onChange = {tipChangeHandler}
-	      			/>
-	      			{tipLabel()[0]}
-	      			<div>
-	      				<button onClick = {changeTipInputType}>{changeTipInputButton()}</button>
-	    			</div>
-	      		</div>
-	      		<div>
-	      			<button type = "submit">Save tax and tip</button>
-	      		</div>
-      		</form>
-    	</div>
-  	);
+				</div>
+    			<div className = "addTaxTipInputField">
+					<label>Tip: </label>
+					<input
+						type = "number"
+						onChange = {tipChangeHandler}
+						placeholder = {" " + tipLabel()[0] + tip + tipLabel()[1]}
+						inputmode = "decimal"/>
+					{/*<div>
+						<button onClick = {changeTipInputType}>{changeTipInputButton()}</button>
+					</div>*/}
+					<div className = "textAndToggle">
+						{/*<button onClick = {changeTaxInputType}>{changeTaxInputButton()}</button>*/}
+						<div className = "toggleLable">Enter by amount </div>
+						<label className="switch">
+							<input type="checkbox" onClick = {changeTipInputType}></input>
+							<span className="slider round"></span>
+						</label>
+					</div>
+				</div>
+				<div className = "save">
+					<button type = "submit"><FaSave/></button>
+				</div>
+			</form>
+		</div>
+	);
 }
 
 export default AddTaxTip;

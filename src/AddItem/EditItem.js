@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../Style.css";
 
 const EditItem = (props) => {
 	const [newName, setNewName] = useState(props.name);
@@ -34,38 +33,38 @@ const EditItem = (props) => {
 	}
 
 	return (
-    	<li>
-	    	<form onSubmit = {submitHandler}>
-	    		<div className = "Item">
-	    			<div>
-		    			<input
-		      				type = "text"
-		      				value = {newName}
-		      				onChange = {itemNameChangeHandler}
-		      			/>
-	      			</div>
-	      			<div>
-		      			<input
-		      				type = "number"
-		      				min = "0.01"
-		      				step = "0.01" 
-		      				value = {newPrice}
-		      				onChange = {itemPriceChangeHandler}
-		      			/>
-	      			</div>
-	    		</div>
-	    		<div className = "saveChangeButton">
-	    			<button type = "submit">Save</button>
-	    		</div>
-	    		<div className = "cancelChangeButton">
-	    			<button onClick = {editItemDoneHandler}>Cancel</button>
-	    		</div>
-	    		<div className = "removeSomethingButton">
-	    			<button onClick = {removeItemHandler}>Remove Item</button>
-	    		</div>
-	    	</form>
-    	</li>
-  	);
+		<li>
+    		<form onSubmit = {submitHandler}>
+				<div className = "Item">
+					<div>
+						<input
+								type = "text"
+								value = {newName}
+								onChange = {itemNameChangeHandler}
+							/>
+						</div>
+						<div>
+							<input
+								type = "number"
+								min = "0.01"
+								step = "0.01" 
+								value = {newPrice}
+								onChange = {itemPriceChangeHandler}
+							/>
+						</div>
+				</div>
+    			<div className = "saveChangeButton">
+    				<button type = "submit">Save</button>
+    			</div>
+    			<div className = "cancelChangeButton">
+    				<button onClick = {editItemDoneHandler}>Cancel</button>
+    			</div>
+    			<div className = "removeSomethingButton">
+    				<button onClick = {removeItemHandler}>Remove Item</button>
+    			</div>
+    		</form>
+		</li>
+	);
 }
 
 export default EditItem;
