@@ -1,34 +1,34 @@
-.addItem {
+.addPerson {
 	text-align: left;
-	margin-top: 40px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 15em;
+	width: 12em;
 }
 
-.addItemTitle {
+.addPersonTitle {
 	font-size: 1.4em;
+	margin-top: 40px;
 	margin-bottom: 12px;
 	font-weight: bold;
 }
 
-.addItemInputField {
+.addPersonInputField {
 	font-size: 1.1em;
 }
 
-.addItemInputField label{
+.addPersonInputField label{
 	display: inline-block;
 	text-align: left;
 }
 
-.addItemInputField input{
+.addPersonInputField input{
 	display: inline-block;
 	text-align: left;
 	margin-left: 1%;
-	width: 9em;
+	width: 11.8em;
 }
 
-.addItemButton button {
+.addPersonButton button {
 	background-color: rgb(77, 191, 98);
 	border-radius: 6px;
 	color: white;
@@ -43,10 +43,10 @@
 	padding-right: 12px;
 	cursor: pointer;
 	position: relative;
-	left: 40%;
+	left: 38%;
 }
 
-.addItemButton button:hover {
-	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-	background-color: rgb(26, 126, 44);
+.addPersonButton button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  background-color: rgb(26, 126, 44);
 }

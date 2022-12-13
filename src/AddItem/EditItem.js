@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { FaSave, FaTrash } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
+
+import "./editItem.css";
 
 const EditItem = (props) => {
 	const [newName, setNewName] = useState(props.name);
@@ -34,35 +38,35 @@ const EditItem = (props) => {
 
 	return (
 		<li>
-    		<form onSubmit = {submitHandler}>
-				<div className = "Item">
-					<div>
+			<div className = "editItem">
+    			<form onSubmit = {submitHandler}>
+					<div className = "cancelChanges">
+						<button onClick = {editItemDoneHandler}><IoClose/></button>
+					</div>
+					<div className = "item">
 						<input
-								type = "text"
-								value = {newName}
-								onChange = {itemNameChangeHandler}
-							/>
-						</div>
-						<div>
-							<input
-								type = "number"
-								min = "0.01"
-								step = "0.01" 
-								value = {newPrice}
-								onChange = {itemPriceChangeHandler}
-							/>
-						</div>
-				</div>
-    			<div className = "saveChangeButton">
-    				<button type = "submit">Save</button>
-    			</div>
-    			<div className = "cancelChangeButton">
-    				<button onClick = {editItemDoneHandler}>Cancel</button>
-    			</div>
-    			<div className = "removeSomethingButton">
-    				<button onClick = {removeItemHandler}>Remove Item</button>
-    			</div>
-    		</form>
+							type = "text"
+							value = {newName}
+							onChange = {itemNameChangeHandler}
+						/>
+					</div>
+					<div className = "item">
+						<input
+							type = "number"
+							min = "0.01"
+							step = "0.01"
+							value = {newPrice}
+							onChange = {itemPriceChangeHandler}
+						/>
+					</div>
+    				<div className = "saveChannges">
+    					<button type = "submit"><FaSave/></button>
+    				</div>
+    				<div className = "removeItem">
+    					<button onClick = {removeItemHandler}><FaTrash/></button>
+    				</div>
+    			</form>
+			</div>
 		</li>
 	);
 }

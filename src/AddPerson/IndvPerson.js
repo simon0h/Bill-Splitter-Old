@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import EditPerson from "./EditPerson";
+import { FaTrash, FaPen } from "react-icons/fa";
+
+import "./indvPerson.css"
 
 const Person = (props) => {
 	const [editPersonOn, setEditPersonOn] = useState(false);
@@ -18,27 +21,31 @@ const Person = (props) => {
 
 	if (editPersonOn) {
 		return (
-			<EditPerson 
-				id = {props.id} 
-				name = {props.name} 
-				editPerson = {props.editPerson} 
+			<EditPerson
+				id = {props.id}
+				name = {props.name}
+				editPerson = {props.editPerson}
 				editPersonHandler = {editPersonHandler}
 				removePersonHandler = {removePersonHandler}
 			/>
 		);
 	}
 
- 	return (
-    	<li>
-    		<div className = "Person">
-    			<div>{props.name}</div>
-    		</div>
-    		<button onClick = {editPersonHandler}>Edit Person</button>
-    		<div className = "removeSomethingButton">
-    			<button onClick = {removePersonHandler}>Remove Person</button>
-    		</div>
-    	</li>
-  	);
+	return (
+	<li>
+		<div className = "indvPerson">
+			<div className = "name">{props.name}</div>
+			<div className = "actionButtons">
+				<div className = "remove">
+					<button onClick = {removePersonHandler}><FaTrash/></button>
+				</div>
+				<div className = "edit">
+					<button onClick = {editPersonHandler}><FaPen/></button>
+				</div>
+			</div>
+		</div>
+	</li>
+	);
 }
 
 export default Person;

@@ -12,21 +12,21 @@ const allItems = (props) => {
 	const removeItem = (id, price) => {
     	props.removeItem(id, price);
 	}
- 
- 	return (
-    	<ul className = "allItems">
-	    	{props.items && props.items.map((item) =>
-	      		(<Item
-	      			key = {item.id}
-	      			name = {item.name}
-	      			price = {item.price}
-	      			id = {item.id}
-	      			editItem = {editItem}
-	      			removeItem = {removeItem}
-	      		/>)
-	      	)}
-    	</ul>
-  	);
+
+	return (
+		<ul className = "allItems">
+			{props.items && props.items.map((item) =>
+				(<Item
+					key = {item.id}
+					name = {item.name}
+					price = {item.price}
+					id = {item.id}
+					editItem = {editItem}
+					removeItem = {removeItem}
+				/>)
+			)}
+		</ul>
+	);
 }
 
 export default allItems;

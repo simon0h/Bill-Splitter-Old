@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import '../App.css';
+import { FaPlusCircle } from "react-icons/fa";
+
+import './addPerson.css';
 
 const AddPerson = (props) => {
 	const [personName, setPersonName] = useState('');
@@ -17,32 +19,32 @@ const AddPerson = (props) => {
 		}
 		const newPerson = {
 			name: autoPersonName,
-			id: props.personID 
+			id: props.personID
 		};
 		props.setPersonID(props.personID + 1);
 		props.onAddPerson(newPerson);
 		setPersonName("");
 	}
 
- 	return (
-    	<div className = "Addperson">
-      		<div>Add a new person</div>
-      		<form onSubmit = {submitHandler}>
-      			<div className = "AddPersonInputField">
-	      			<label>Person Name</label>
-	      			<input
-	      				type = "text"
-	      				value = {personName}
-	      				onChange = {personNameChangeHandler}
-	      				placeholder = {"Person "+ props.personID}
-	      			/>
-	      		</div>
-	      		<div>
-	      			<button type = "submit">Add person</button>
-	      		</div>
-      		</form>
-    	</div>
-  	);
+	return (
+		<div className = "addPerson">
+			<div className = "addPersonTitle">Add a new person</div>
+			<form onSubmit = {submitHandler}>
+				<div className = "addPersonInputField">
+					<label>Person Name</label>
+					<input
+						type = "text"
+						value = {personName}
+						onChange = {personNameChangeHandler}
+						placeholder = {"Person "+ props.personID}
+					/>
+				</div>
+				<div className = "addPersonButton">
+					<button type = "submit"><FaPlusCircle/></button>
+				</div>
+			</form>
+		</div>
+	);
 }
 
 export default AddPerson;

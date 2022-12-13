@@ -97,10 +97,8 @@ const App = () => {
 	          ...person,
 	          name: newName,
 	        };
-
 	        return updatedPeople;
 	      }
-
 	      return person;
 	    });
 	    setPerson(newList);
@@ -135,98 +133,98 @@ const App = () => {
 	if (screen === 0) {
 		return (
 	    	<div className="App">
-	    		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
-	    		<AddTaxTip 
-	    			taxTip = {taxTip} 
-	    			inputTaxAsPercent = {inputTaxAsPercent} 
-	    			inputTipAsPercent = {inputTipAsPercent} 
-	    			setInputTaxAsPercent = {setInputTaxAsPercent} 
-	    			setInputTipAsPercent = {setInputTipAsPercent} 
+	    		<AddTaxTip
+	    			taxTip = {taxTip}
+	    			inputTaxAsPercent = {inputTaxAsPercent}
+	    			inputTipAsPercent = {inputTipAsPercent}
+	    			setInputTaxAsPercent = {setInputTaxAsPercent}
+	    			setInputTipAsPercent = {setInputTipAsPercent}
 	    			setTaxTip = {setTaxTip}
 	    		/>
-	    		<AddItem 
-	    			onAddItem = {addNewItem} 
-	    			itemID = {itemID} 
+	    		<AddItem
+	    			onAddItem = {addNewItem}
+	    			itemID = {itemID}
 	    			setItemID = {setItemID}
 	    		/> {/*Suggest new items based on what was entered, e.g suggest ramen if that was already types*/}
-	    		<AllItems 
-	    			items = {items} 
-	    			editItem = {editItem} 
+	    		<AllItems
+	    			items = {items}
+	    			editItem = {editItem}
 	    			removeItem = {removeItem}
 	    		/>
-				<div className = "next">
+				<div className = "singleButton">
 	    			<button type = "submit" onClick = {nextScreen}><FaArrowRight/></button>
 				</div>
 	    	</div>
-	  	);
+		);
 	}
 
 	else if (screen === 1) {
 		return (
 	    	<div className="App">
-	    		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
-    			<AddPerson 
-    				onAddPerson = {addNewPerson} 
-    				personID = {personID} 
+    			<AddPerson
+    				onAddPerson = {addNewPerson}
+    				personID = {personID}
     				setPersonID = {setPersonID}
     			/>
-    			<AllPeople 
-    				people = {people} 
-    				editPerson = {editPerson} 
+    			<AllPeople
+    				people = {people}
+    				editPerson = {editPerson}
     				removePerson = {removePerson}
     			/>
-				<div className = "back">
-	    			<button type = "submit" onClick = {prevScreen}><FaArrowLeft/></button>
-				</div>
-				<div className = "next">
-	    			<button type = "submit" onClick = {nextScreen}><FaArrowRight/></button>
+				<div className = "doubleButton">
+					<div className = "back">
+	    				<button type = "submit" onClick = {prevScreen}><FaArrowLeft/></button>
+					</div>
+					<div className = "next">
+	    				<button type = "submit" onClick = {nextScreen}><FaArrowRight/></button>
+					</div>
 				</div>
 	    	</div>
-	  	);
+		);
 	}
 
 	else if (screen === 2) {
 		return (
 	    	<div className="App">
-	    		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
-    			<MatchPersonFood 
-    				items = {items} 
-    				people = {people} 
-    				itemEatenBy_All = {itemEatenBy_All} 
+    			<MatchPersonFood
+    				items = {items}
+    				people = {people}
+    				itemEatenBy_All = {itemEatenBy_All}
     				matchItemEatenBy_All = {matchItemEatenBy_All}
     			/>
-				<div className = "back">
-	    			<button type = "submit" onClick = {prevScreen}><FaArrowLeft/></button>
-				</div>
-				<div className = "next">
-	    			<button type = "submit" onClick = {nextScreen}><FaArrowRight/></button>
+				<div className = "doubleButton">
+					<div className = "back">
+	    				<button type = "submit" onClick = {prevScreen}><FaArrowLeft/></button>
+					</div>
+					<div className = "next">
+	    				<button type = "submit" onClick = {nextScreen}><FaArrowRight/></button>
+					</div>
 				</div>
 	    	</div>
-	  	);
+		);
 	}
 
 	else {
 		return (
 	    	<div className="App">
-	    		<div className = "p1">1. Enter items  2. Enter people  3. Pick who ate what</div>
-    			<CalculateCosts 
-    				items = {items} 
-					people = {people} 
-					itemEatenBy_All = {itemEatenBy_All} 
-					taxTip = {taxTip} 
-					inputTaxAsPercent = {inputTaxAsPercent} 
-					inputTipAsPercent = {inputTipAsPercent} 
+    			<CalculateCosts
+    				items = {items}
+					people = {people}
+					itemEatenBy_All = {itemEatenBy_All}
+					taxTip = {taxTip}
+					inputTaxAsPercent = {inputTaxAsPercent}
+					inputTipAsPercent = {inputTipAsPercent}
 					totalFoodCost = {totalFoodCost}
 					splitTaxEvenly = {splitTaxEvenly}
 					splitTipEvenly = {splitTipEvenly}
 					setSplitTaxEvenly = {setSplitTaxEvenly}
 					setSplitTipEvenly = {setSplitTipEvenly}
     			/>
-				<div className = "back">
+				<div className = "singleButton">
 	    			<button type = "submit" onClick = {prevScreen}><FaArrowLeft/></button>
 	    		</div>
 			</div>
-	  	);
+		);
 	}
 }
 

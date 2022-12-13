@@ -1,9 +1,12 @@
 import React , { useState } from "react";
 import DividedCosts from "./DividedCosts";
 
+import "./calculateCosts.css";
+
 const CalculateCosts = (props) => {
 
 	const[refresh, setRefresh] = useState("");
+	const[subtotalBlankSpace, setSubtotalBlankSpace] = useState("");
 
 	const[splitTaxButton, setSplitTaxButton] = useState(() => {
 		if (props.splitTaxEvenly) {
@@ -39,6 +42,26 @@ const CalculateCosts = (props) => {
 			tip = props.taxTip.tip;
 		}
 		return(tip);
+	})
+
+	const[costBlankSpace, setCostBlankSpace] = useState(() => {
+		let blankSpaceNum = 0;
+		let costLength = 0;
+		const subtotal = totalTax + totalTip + props.totalFoodCost;
+		let subtotalLength = 0;
+		costLength = (props.totalFoodCost).toString().length;
+		subtotalLength = subtotal.toString().length;
+		if (Math.floor(props.totalFoodCost) !== props.totalFoodCost) {
+			costLength += (props.totalFoodCost).toString().split(".")[1].length || 0;
+		}
+		if (Math.floor(subtotal) !== subtotal) {
+			subtotalLength += (subtotal).toString().split(".")[1].length || 0;
+		}
+		if (costLength > subtotalLength) {
+			setSubtotalBlankSpace('-'.repeat(costLength - subtotalLength));
+			return("");
+		}
+		return('-'.repeat(subtotalLength - costLength));
 	})
 
 	const showPercentage = (type) => {
@@ -77,12 +100,30 @@ const CalculateCosts = (props) => {
 	}
 
 	return (
-		<div className = "App">
-			<div>Tax: ${totalTax} {showPercentage("tax")} <button onClick = {onSplitTaxMethod}>{splitTaxButton}</button> </div>
-			<div>Tip: ${totalTip} {showPercentage("tip")} <button onClick = {onSplitTipMethod}>{splitTipButton}</button> </div>
-			<div>Cost of food: ${props.totalFoodCost}</div>
-			<div>Subtotal: ${totalTax + totalTip + props.totalFoodCost}</div>
-			<DividedCosts 
+		<div className = "calculateCosts">
+			<div className = "displayTax">
+				Tax: ${totalTax} {showPercentage("tax")}
+				<div className = "textAndToggle">
+					<div className = "toggleLable">Don't split tax evenly </div>
+					<label className = "switch">
+						<input type = "checkbox" onClick = {onSplitTaxMethod}></input>
+						<span className = "slider round"></span>
+					</label>
+				</div>
+			</div>
+			<div className = "displayTip">
+				Tip: ${totalTip} {showPercentage("tip")}
+				<div className = "textAndToggle">
+					<div className = "toggleLable">Don't split tip evenly </div>
+					<label className = "switch">
+						<input type = "checkbox" onClick = {onSplitTipMethod}></input>
+						<span className = "slider round"></span>
+					</label>
+				</div>
+			</div>
+			<div className = "cost">Cost of food: ${props.totalFoodCost}{costBlankSpace}</div>
+			<div className = "subtotal">Subtotal: ${totalTax + totalTip + props.totalFoodCost}{subtotalBlankSpace}</div>
+			<DividedCosts
 				key = {refresh}
 				itemEatenBy_All = {props.itemEatenBy_All}
 				items = {props.items}
@@ -90,7 +131,7 @@ const CalculateCosts = (props) => {
 				totalTax = {totalTax}
 				totalTip = {totalTip}
 				totalFoodCost = {props.totalFoodCost}
-				splitTaxEvenly = {props.splitTaxEvenly} 
+				splitTaxEvenly = {props.splitTaxEvenly}
 				splitTipEvenly = {props.splitTipEvenly}
 			/>
 		</div>

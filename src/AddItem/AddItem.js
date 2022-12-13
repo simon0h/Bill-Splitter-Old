@@ -4,8 +4,8 @@ import { FaPlusCircle } from "react-icons/fa";
 import './addItem.css';
 
 const AddItem = (props) => {
-	const [itemName, setItemName] = useState('');
-	const [itemPrice, setItemPrice] = useState(0);
+	const [itemName, setItemName] = useState("");
+	const [itemPrice, setItemPrice] = useState("");
 
 	const itemNameChangeHandler = (event) => {
 		setItemName(event.target.value);
@@ -14,7 +14,7 @@ const AddItem = (props) => {
 	const itemPriceChangeHandler = (event) => {
 		if (event.target.value < 0) {
 			window.alert("Item price cannot be negative");
-			setItemPrice("");
+			setItemPrice(0);
 		}
 		else {
 			setItemPrice(Math.floor(event.target.value * 100) / 100); // Truncating past two decimal points
@@ -23,20 +23,24 @@ const AddItem = (props) => {
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		var autoItemName = itemName;
+		let autoItemName = itemName;
+		let itemPriceCheck = itemPrice;
 		if (!itemName.trim()) {
 			autoItemName = "Item" + props.itemID;
 			setItemName(autoItemName);
 		}
+		if (itemPrice.toString().length === 0) {
+			itemPriceCheck = 0;
+		}
 		const newItem = {
 			name: autoItemName,
-			price: itemPrice,
-			id: props.itemID 
+			price: itemPriceCheck,
+			id: props.itemID
 		};
 		props.setItemID(props.itemID + 1);
 		props.onAddItem(newItem);
-		setItemPrice(0);
 		setItemName("");
+		setItemPrice("");
 	}
 
     return (
@@ -56,9 +60,10 @@ const AddItem = (props) => {
 					<label>Price: </label>
 					<input
 						type = "number"
+						value = {itemPrice}
 						onChange = {itemPriceChangeHandler}
-						placeholder = {" $" + itemPrice}
-						inputmode = "decimal"
+						placeholder = {" $0"}
+						inputMode = "decimal"
 					/>
 				</div>
 				<div className = "addItemButton">

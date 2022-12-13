@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import './buttonColor.css';
+import './indvButton.css';
 
 const IndvButton = (props) => {
 	const[buttonColor, setButtonColor] = useState(props.buttonColor);
 	const[selectionState, setSelectionState] = useState(props.selectionState);
+	let truncatedName = props.name.substring(0, 11);
+	if (props.name.length > 11) {
+		truncatedName += "...";
+	}
 
 	const onPersonSelection = (event) => {
 		if (!selectionState) {
@@ -18,8 +22,10 @@ const IndvButton = (props) => {
 	}
 
 	return (
-		<div className = {buttonColor}>
-	  		<button onClick = {onPersonSelection}>{props.name}</button>
+		<div className = "personSelect">
+			<div className = {buttonColor}>
+				<button onClick = {onPersonSelection}>{truncatedName}</button>
+			</div>
 	    </div>
     );
 }

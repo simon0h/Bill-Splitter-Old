@@ -9,7 +9,6 @@ const ChooseWhoAte = (props) => {
 				oldSelectedPeople = item.peopleID;
 			}
 		}
-		//console.log(props.itemID, oldSelectedPeople);
 		return oldSelectedPeople;
 	}
 
@@ -23,7 +22,6 @@ const ChooseWhoAte = (props) => {
 				oldSelectedPeople[person.id] = ["notSelected", false];
 			}
 		}
-		//console.log(props.itemID, oldSelectedPeople);
 		return oldSelectedPeople;
 	}
 
@@ -37,8 +35,6 @@ const ChooseWhoAte = (props) => {
 		return initialState;
 	});
 
-	// const [selectedPeople, setSelectedPeople] = useState([]);
-
 	const addPersonWhoAte = (person) => {
 		setSelectedPeople((prevPeople) => {
 			return [...prevPeople, person];
@@ -48,19 +44,18 @@ const ChooseWhoAte = (props) => {
 	const removePersonWhoAte = (personIDToBeRemoved) => {
 		const newList = selectedPeople.filter((personID) => personID !== personIDToBeRemoved);
 		setSelectedPeople(newList);
-		//props.matchItemEatenBy_All(props.itemID, selectedPeople);
 	}
 
 	const submitHandler = (event) => {
 		event.preventDefault();
 		props.matchItemEatenBy_All(props.itemID, selectedPeople);
-	} 
+	}
 
 	return (
-		<ul className = "AllPeople">
+		<ul>
 			<form onSubmit = {submitHandler}>
 		    	{props.people && props.people.map((person) => (
-					<IndvButton 
+					<IndvButton
 						key = {person.id}
 						id = {person.id}
 						name = {person.name}
@@ -69,9 +64,9 @@ const ChooseWhoAte = (props) => {
 						buttonColor = {selectedPeopleObject[person.id][0]}
 						selectionState = {selectedPeopleObject[person.id][1]}
 					/>)
-		      	)}
-	      	</form>
-	    </ul>
+				)}
+			</form>
+		</ul>
     );
 }
 

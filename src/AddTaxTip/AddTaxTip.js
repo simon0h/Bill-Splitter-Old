@@ -8,6 +8,8 @@ const AddTaxTip = (props) => {
 
 	const[taxButtonColor_Percent, setTaxButtonColor_Percent] = useState(props.inputTaxAsPercent);
 	const[tipButtonColor_Percent, setTipButtonColor_Percent] = useState(props.inputTipAsPercent);
+	
+	const [isAlertVisible, setIsAlertVisible] = useState(false);
 
 	const taxChangeHandler = (event) => {
 		if (event.target.value < 0) {
@@ -74,6 +76,13 @@ const AddTaxTip = (props) => {
 		}
 		return ("Enter by percentage instead");
 	}
+	
+	const handleButtonClick = () => {
+		setIsAlertVisible(true);
+		setTimeout(() => {
+			setIsAlertVisible(false);
+		}, 1800);
+	}
 
 	const submitHandler = (event) => {
 		event.preventDefault();
@@ -91,11 +100,10 @@ const AddTaxTip = (props) => {
 						type = "number"	
 						onChange = {taxChangeHandler}
 						placeholder = {" " + taxLabel()[0] + tax + taxLabel()[1]}
-						inputmode = "decimal"
+						inputMode = "decimal"
 					/>
 					<div className = "textAndToggle">
-					{/*<button onClick = {changeTaxInputType}>{changeTaxInputButton()}</button>*/}
-					<div className = "toggleLable">Enter by amount </div>
+						<div className = "toggleLable">Enter by amount </div>
 						<label className = "switch">
 							<input type = "checkbox" onClick = {changeTaxInputType}></input>
 							<span className = "slider round"></span>
@@ -108,12 +116,8 @@ const AddTaxTip = (props) => {
 						type = "number"
 						onChange = {tipChangeHandler}
 						placeholder = {" " + tipLabel()[0] + tip + tipLabel()[1]}
-						inputmode = "decimal"/>
-					{/*<div>
-						<button onClick = {changeTipInputType}>{changeTipInputButton()}</button>
-					</div>*/}
+						inputMode = "decimal"/>
 					<div className = "textAndToggle">
-						{/*<button onClick = {changeTaxInputType}>{changeTaxInputButton()}</button>*/}
 						<div className = "toggleLable">Enter by amount </div>
 						<label className="switch">
 							<input type="checkbox" onClick = {changeTipInputType}></input>
@@ -122,8 +126,11 @@ const AddTaxTip = (props) => {
 					</div>
 				</div>
 				<div className = "save">
-					<button type = "submit"><FaSave/></button>
+					<button onClick = {handleButtonClick} type = "submit"><FaSave/></button>
 				</div>
+				{isAlertVisible && <div className='alert-container'>
+					<div className='alert-inner'>Saved</div>
+				</div>}
 			</form>
 		</div>
 	);

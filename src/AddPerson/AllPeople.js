@@ -10,7 +10,7 @@ const allPeople = (props) => {
 	const removePerson = (id) => {
     	props.removePerson(id);
 	}
- 
+
  	return (
     	<ul className = "AllPeople">
 	    	{props.people && props.people.map((person) =>
